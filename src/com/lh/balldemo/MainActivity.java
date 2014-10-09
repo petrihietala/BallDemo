@@ -74,8 +74,8 @@ public class MainActivity extends Activity {
 			}
 		}
 
+		@Override
 		public void onSensorChanged(SensorEvent event) {
-
 			synchronized (this) {            	
 				if (event.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
 					SensorManager.getRotationMatrixFromVector(mRotationMatrix , event.values);
@@ -84,7 +84,10 @@ public class MainActivity extends Activity {
 			}
 		}
 
+		@Override
 		public void onAccuracyChanged(Sensor sensor, int accuracy) {
+			// TODO Auto-generated method stub
+			
 		}
 	}
 
