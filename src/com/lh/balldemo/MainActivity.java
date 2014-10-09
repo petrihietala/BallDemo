@@ -40,6 +40,7 @@ public class MainActivity extends Activity {
 		private Canvas  		mCanvas = new Canvas();
 		private float[] 		mRotationMatrix = new float[16];
 		private Paint 			mBallPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+		private Paint 			mCenterPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 		private PointF  		mCurrentPoint = new PointF(0,0);
 		private int 			mBallDiameter = 20;
 		public BallPhysics 		mBallPhysics;
@@ -50,6 +51,9 @@ public class MainActivity extends Activity {
 			super(context);
 			Matrix.setIdentityM(mRotationMatrix, 0);
 			mBallPaint.setColor(Color.DKGRAY);
+			mCenterPaint.setStyle(Paint.Style.STROKE);
+			mCenterPaint.setStrokeWidth(2);
+			mCenterPaint.setColor(Color.GREEN);
 		}
 
 		@Override
@@ -67,6 +71,7 @@ public class MainActivity extends Activity {
 				if (mCurrentPoint != null && mRotationMatrix != null) {
 					PointF nextPoint = mBallPhysics.GetNextPoint(mCurrentPoint, mRotationMatrix);
 
+					canvas.drawCircle(canvas.getWidth()/2, canvas.getHeight()/2, 24, mCenterPaint);
 					canvas.drawCircle(nextPoint.x, nextPoint.y, mBallDiameter, mBallPaint);
 
 					mCurrentPoint.set(nextPoint);
