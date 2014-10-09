@@ -32,6 +32,9 @@ public class BallPhysics {
 		return mGravity;
 	}
 
+	/*
+	 * Calculates the next point based on the current point and device rotation 
+	 */	
 	public PointF GetNextPoint(PointF currentPoint, float[] mRotationMatrix)
 	{
 		long newTimestamp = System.currentTimeMillis();
@@ -50,14 +53,24 @@ public class BallPhysics {
 
 			Matrix.multiplyMV(rotatedVec, 0, mRotationMatrix, 0, UNIT_VECTOR_Z, 0);
 
+			// Calculate acceleration
+			// TODO: 
 			float acceleration = (float)mGravity * (1-(float)Math.pow(rotatedVec[2], 2));
 
+			// Velocity along the X-axis
 			mVelocityX = mVelocityX -rotatedVec[0] * acceleration * seconds;
+			// Velocity along the X-axis
 			mVelocityY = mVelocityY + rotatedVec[1] * acceleration * seconds;
 
-			float dX = mVelocityX * seconds;
+			// X-axis distance to next point
+			float dX = mVelocityX * seconds;		
+			// Y-axis distance to next point
 			float dY = mVelocityY * seconds;
 
+			// Collision detection. Check if the ball hits the wall.
+			// If we hit side walls, set X-axis velocity to 0.
+			// If we hit top or bottom walls, set Y-axis velocity to 0.
+			// TODO: maybe a bit crude?
 			if (currentPoint.x - mBallDiameter + dX < 0)
 			{
 				dX = -(currentPoint.x - mBallDiameter);
