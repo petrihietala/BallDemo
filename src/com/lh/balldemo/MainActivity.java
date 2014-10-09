@@ -27,7 +27,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 
 public class MainActivity extends Activity {
 
-	public static final int 	MAX_GRAVITY = 14000;
+	public static final int 	MAX_GRAVITY = 18000;
 	public static final String 	PREFS_FILE_NAME = "PrefsFile";
 	public static final String 	GRAVITY_PREF_NAME = "GravityPrefs";
 
