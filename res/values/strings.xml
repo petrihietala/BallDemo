@@ -4,5 +4,6 @@
     <string name="app_name">BallDemo</string>
     <string name="hello_world">Hello world!</string>
     <string name="set_gravity">Set Gravity</string>
+    <string name="title_activity_game">GameActivity</string>
 
 </resources>
